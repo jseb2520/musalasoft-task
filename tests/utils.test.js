@@ -12,6 +12,4 @@ describe('Utility Functions', () => {
 		const totalWeight = calculateWeight(items);
 		expect(totalWeight).to.equal(330);
 	});
-
-	// Add more tests for other utility functions
 });
