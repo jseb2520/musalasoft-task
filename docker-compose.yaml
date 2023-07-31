@@ -12,14 +12,14 @@ services:
       - ./data/mysql-data:/var/lib/mysql
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
-      timeout: 20s
-      retries: 10
+      timeout: 10s
+      retries: 5
   app:
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - '5001:5000'
+      - '5001:5001'
     depends_on:
       mysql:
         condition: service_healthy
