@@ -30,10 +30,7 @@ describe('Drones API', () => {
 				});
 		});
 
-		// Add more test cases for error handling and other scenarios
 	});
-
-	// Add more test cases for other endpoints related to drones
 
 	// Test for the GET /drones endpoint
 	describe('GET /drones', () => {
@@ -44,14 +41,9 @@ describe('Drones API', () => {
 				.end((err, res) => {
 					expect(res).to.have.status(200);
 					expect(res.body).to.be.an('array');
-					// Assuming you have some drones registered in the database,
-					// you can add more specific assertions here
 					done();
 				});
 		});
 
-		// Add more test cases for error handling and other scenarios
 	});
 });
-
-// You can add more test cases for other endpoints and utility functions related to drones
