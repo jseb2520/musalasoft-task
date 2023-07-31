@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+  mysql:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: dronedb
+      MYSQL_USER: droneuser
+      MYSQL_PASSWORD: dronepassword
+    volumes:
+      - ./data/mysql-data:/var/lib/mysql
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
+      timeout: 20s
+      retries: 10
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - '5001:5000'
+    depends_on:
+      mysql:
+        condition: service_healthy
+    environment:
+      DB_HOST: mysql
+      DB_USER: droneuser
+      DB_PASSWORD: dronepassword
+      DB_DATABASE: dronedb
+      PORT: 5001
+    volumes:
+      - ./data:/usr/src/app/data
